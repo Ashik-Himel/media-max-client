@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-block font-medium px-4 py-2 rounded-md border-2 transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply bg-primary text-text-color-alt border-primary hover:bg-transparent hover:text-primary;
+  }
+}
