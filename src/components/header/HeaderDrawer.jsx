@@ -8,7 +8,7 @@ import mapIcon from '../../assets/images/icons/google-maps.png';
 
 const HeaderDrawer = ({navLinks, drawerShow, setDrawerShow}) => {
   return (
-    <div className='fixed top-0 right-0 bottom-0 w-4/5 max-w-[320px] bg-secondary border-s-4 border-menu-border transition-[right] duration-300' style={drawerShow ? {right: "0px"} : {right: "-350px"}}>
+    <div className='fixed top-0 right-0 bottom-0 z-50 w-4/5 max-w-[320px] bg-secondary border-s-4 border-menu-border transition-[right] duration-300' style={drawerShow ? {right: "0px"} : {right: "-350px"}}>
       <FaCircleXmark className='absolute top-6 left-6 text-3xl text-primary cursor-pointer' onClick={() => setDrawerShow(false)} />
 
       <div className='mt-12'>

@@ -17,7 +17,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="py-4 border-b-2 border-primary">
+    <header className="py-4 border-b-2 [background-image:linear-gradient(114.29deg,_#0b1926_-15.11%,_#020606_106.05%)] border-primary fixed left-0 top-0 right-0 z-40">
       <div className="container">
         <nav className="flex justify-between items-center">
           <Link to='/#home' className="flex items-center gap-2">

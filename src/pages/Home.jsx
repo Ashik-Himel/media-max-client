@@ -1,8 +1,15 @@
+import { Helmet } from "react-helmet-async";
+import HeroSection from "../components/home/HeroSection";
+
 const Home = () => {
   return (
-    <div>
-      <p>This is Home component.</p>
-    </div>
+    <main>
+      <Helmet>
+        <title>Media Max - An Authorized Distributor of Banglalink Digital</title>
+      </Helmet>
+
+      <HeroSection />
+    </main>
   );
 };
 
