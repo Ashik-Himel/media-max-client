@@ -7,7 +7,7 @@ const TeamSection = () => {
   return (
     <section className="mt-16">
       <div className="container">
-        <h2 className='text-center text-[2rem] font-semibold mb-2 leading-tight'>Our <span className="text-primary">Team</span></h2>
+        <h2 className='text-title-color text-center text-[2rem] font-semibold mb-2 leading-tight'>Our <span className="text-primary">Team</span></h2>
         <p className='max-w-[500px] mx-auto text-center mb-10'>We have total 166 employees in 4 distribution houses. Some of them are -</p>
 
         <div className="max-w-[900px] mx-auto bg-secondary p-8 rounded-lg flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">

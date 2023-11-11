@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {FaBars} from 'react-icons/fa6';
 import HeaderDrawer from "./HeaderDrawer";
+import { AllContext } from "../../context/GlobalContext";
 
 const Header = () => {
+  const {user, userLoaded} = useContext(AllContext);
   const [drawerShow, setDrawerShow] = useState(false);
   const navLinks = [
     ['Home', '/#home',],
@@ -12,9 +14,12 @@ const Header = () => {
     ['Dist. Houses', '/#dist-houses'],
     ['Team', '/#team'],
     ['Contact Us', '/#contact'],
-    ['Employees', '/employees'],
-    ['Login', '/login']
+    ['Employees', '/employees']
   ]
+  if (userLoaded) {
+    if (user) navLinks.push(['Dashboard', '/dashboard'])
+    else navLinks.push(['Login', '/login'])
+  }
 
   return (
     <header className="py-4 border-b-2 [background-image:linear-gradient(114.29deg,_#0b1926_-15.11%,_#020606_106.05%)] border-primary fixed left-0 top-0 right-0 z-40">
@@ -27,7 +32,7 @@ const Header = () => {
 
           <ul className="hidden xl:flex items-center gap-6">
             {
-              navLinks?.map(navLink => <Link to={navLink[1]} className={navLink[0] === 'Login' ? 'btn btn-primary' : ''} key={navLink[1]}>{navLink[0]}</Link>)
+              navLinks?.map(navLink => <Link to={navLink[1]} className={navLink[0] === 'Login' || navLink[0] === 'Dashboard' ? 'btn btn-primary' : ''} key={navLink[1]}>{navLink[0]}</Link>)
             }
           </ul>
 

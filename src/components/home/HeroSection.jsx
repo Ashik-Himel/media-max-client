@@ -13,8 +13,8 @@ const HeroSection = () => {
       <div className="container relative flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
         <div>
           <span className="inline-block mb-2 font-medium bg-white px-6 py-1 text-text-color-alt rounded">Hello</span>
-          <h1 className="font-['Tilt_Neon',_sans-serif] text-[2.5rem] font-bold leading-tight mb-2">Welcome To <span className="text-primary">MEDIA MAX</span></h1>
-          <h3 className="text-2xl font-medium mb-6">An Authorized Distributor of Banglalink</h3>
+          <h1 className="text-title-color font-['Tilt_Neon',_sans-serif] text-[2.5rem] font-bold leading-tight mb-2">Welcome To <span className="text-primary">MEDIA MAX</span></h1>
+          <h3 className="text-title-color text-2xl font-medium mb-6">An Authorized Distributor of Banglalink</h3>
           <p className="max-w-[700px] mb-6">Media Max is an authorized distributor of banglalink in Sreepur, Gazipur. We are providing digital services of banglalink since March, 2018.</p>
           <div className="flex items-center gap-4">
             <Link to='/#about' className='btn btn-primary'>About Us</Link>
