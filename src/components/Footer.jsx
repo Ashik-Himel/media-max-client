@@ -2,7 +2,7 @@ import brandLogo from '../assets/images/logo/media-max.png';
 
 const Footer = () => {
   return (
-    <footer className='mt-12'>
+    <footer className='mt-16'>
       <section className='bg-secondary py-12'>
         <div className="container">
           <div className='flex flex-col sm:flex-row justify-center sm:items-center gap-10 [&>*]:flex-1'>

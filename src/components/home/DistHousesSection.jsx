@@ -6,14 +6,14 @@ import akashMedia from '../../assets/images/logo/akash-media.png';
 
 const DistHousesSection = () => {
   return (
-    <section className="mt-12">
+    <section className="mt-16">
       <div className="container">
-        <h2 className='text-center text-[2rem] font-semibold mb-2'><span className="text-primary">Distribution</span> Houses</h2>
+        <h2 className='text-center text-[2rem] font-semibold mb-2 leading-tight'><span className="text-primary">Distribution</span> Houses</h2>
         <p className='max-w-[500px] mx-auto text-center mb-10'>We have four distribution houses tagged with Media Max.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <div className="bg-secondary p-8 rounded-lg shadow-regular flex flex-col [&>*:nth-child(3)]:flex-1 [&>*:last-child]:self-start relative">
-            <span className="inline-block bg-primary text-text-color-alt px-4 py-1 rounded font-medium absolute -left-10 top-1.5 -rotate-45">Head Office</span>
+            <span className="inline-block bg-primary text-text-color-alt px-4 py-1 rounded font-medium absolute -left-[36px] top-[10px] -rotate-45">Head Office</span>
             <img className="h-[60px] self-start mb-6" src={mediaMax} alt="Media Max Logo" />
             <h3 className="text-2xl font-medium mb-2">Media Max</h3>
             <p className="mb-6">Kitab Ali Plaza (3rd Floor), Mawna Chowrasta, Sreepur, Gazipur-1740, Dhaka.</p>

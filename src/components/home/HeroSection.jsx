@@ -9,7 +9,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="pt-12 pb-6 overflow-hidden">
+    <section className="py-12 overflow-hidden">
       <div className="container relative flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
         <div>
           <span className="inline-block mb-2 font-medium bg-white px-6 py-1 text-text-color-alt rounded">Hello</span>

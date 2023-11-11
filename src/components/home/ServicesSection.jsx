@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const ServicesSection = () => {
   return (
-    <section className="mt-12">
+    <section className="mt-16">
       <div className="container">
-        <h2 className='text-center text-[2rem] font-semibold mb-2'>Our <span className="text-primary">Services</span></h2>
+        <h2 className='text-center text-[2rem] font-semibold mb-2 leading-tight'>Our <span className="text-primary">Services</span></h2>
         <p className='max-w-[500px] mx-auto text-center mb-10'>Here are some short description about the services we provide to our customers.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
