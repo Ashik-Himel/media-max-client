@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import anime from 'animejs/lib/anime.es.js';
 import heroImg from '../../assets/images/hero-img.png';
 import { Link } from 'react-router-dom';
 
@@ -10,32 +8,8 @@ const HeroSection = () => {
     "triangle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50px] h-[50px] bg-[#f5f5f5] [clip-path:polygon(50%_0%,_0%_100%,_100%_100%)] [-webkit-clip-path:polygon(50%_0%,_0%_100%,_100%_100%)]"
   ];
 
-  useEffect(() => {
-    function randomValues() {
-      anime({
-        targets: ".square, .circle, .triangle",
-        translateX: function () {
-          return anime.random(-500, 500);
-        },
-        translateY: function () {
-          return anime.random(-300, 300);
-        },
-        rotate: function () {
-          return anime.random(0, 360);
-        },
-        scale: function () {
-          return anime.random(0.2, 2);
-        },
-        duration: 2000,
-        easing: "easeInOutQuad",
-        complete: randomValues,
-      });
-    }
-    randomValues();
-  }, []);
-
   return (
-    <section className="py-12 overflow-hidden">
+    <section className="pt-12 pb-6 overflow-hidden">
       <div className="container relative flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
         <div>
           <span className="inline-block mb-2 font-medium bg-white px-6 py-1 text-text-color-alt rounded">Hello</span>
@@ -49,7 +23,7 @@ const HeroSection = () => {
         </div>
 
         <div>
-          <img className='w-full max-w-[500px] mx-auto' src={heroImg} alt="Hero Section Image" />
+          <img className='w-full max-w-[450px] mx-auto' src={heroImg} alt="Hero Section Image" />
         </div>
 
         <div className="absolute left-0 top-0 right-0 h-full -z-10 brightness-[75%] contrast-[120%]">
