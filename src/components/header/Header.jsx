@@ -17,7 +17,7 @@ const Header = () => {
     ['Employees', '/employees']
   ]
   if (userLoaded) {
-    if (user) navLinks.push(['Dashboard', '/dashboard'])
+    if (user) navLinks.push(['Dashboard', '/dashboard/home'])
     else navLinks.push(['Login', '/login'])
   }
 

@@ -5,7 +5,7 @@ import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 import {signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../firebase.config";
 import { AllContext } from "../context/GlobalContext";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {setUser} = useContext(AllContext);
@@ -22,11 +22,19 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         setUser(userCredential.user);
-        toast.success("Login Successful !!!");
-        navigate('/dashboard');
+        Swal.fire({
+          title: "Successful!",
+          text: "Login Successful!",
+          icon: "success"
+        });
+        navigate('/dashboard/home');
       })
       .catch(err => {
-        toast.error(err.message);
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error"
+        });
       })
   }
   const handlePassOnChange = e => {

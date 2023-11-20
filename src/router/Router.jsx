@@ -6,7 +6,13 @@ import Employees from "../pages/Employees";
 import PrivateRouteAlt from "../routesManager/PrivateRouteAlt";
 import Login from "../pages/Login";
 import PrivateRoute from "../routesManager/PrivateRoute";
-import Dashboard from "../pages/dashboard/Dashboard";
+import Dashboard from "./Dashboard";
+import DashboardHome from "../pages/dashboard/DashboardHome";
+import DashboardEmployees from "../pages/dashboard/DashboardEmployees";
+import DashboardTeam from "../pages/dashboard/DashboardTeam";
+import EmployeeAdd from "../pages/dashboard/EmployeeAdd";
+import EmployeeUpdate from "../pages/dashboard/EmployeeUpdate";
+import TeamMemberUpdate from "../pages/dashboard/TeamMemberUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -25,10 +31,37 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <PrivateRouteAlt><Login /></PrivateRouteAlt>
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/dashboard/home',
+        element: <PrivateRoute><DashboardHome /></PrivateRoute>
       },
       {
-        path: '/dashboard',
-        element: <PrivateRoute><Dashboard /></PrivateRoute>
+        path: '/dashboard/employees',
+        element: <PrivateRoute><DashboardEmployees /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/team',
+        element: <PrivateRoute><DashboardTeam /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/employees/add',
+        element: <PrivateRoute><EmployeeAdd /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/employees/update',
+        element: <PrivateRoute><EmployeeUpdate /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/team/update',
+        element: <PrivateRoute><TeamMemberUpdate /></PrivateRoute>
       }
     ]
   }

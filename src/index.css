@@ -18,3 +18,16 @@
     @apply border-primary text-primary hover:bg-primary hover:text-text-color-alt;
   }
 }
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  @apply !bg-secondary !text-white;
+}
+div:where(.swal2-icon).swal2-warning {
+  @apply !text-[#d33] !border-[#d33]
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  @apply !text-text-color-alt;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  @apply !bg-primary !text-text-color-alt;
+}
