@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import {BiSearch} from 'react-icons/bi';
 import { axiosInstance } from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const employeesFetcher = async() => {
   const res = await axiosInstance('/employees');
@@ -10,6 +11,7 @@ const employeesFetcher = async() => {
 
 const Employees = () => {
   const {data: employees, isLoading} = useQuery({queryKey: ['employees'], queryFn: employeesFetcher});
+  const navigate = useNavigate();
   
   if (isLoading) return (
     <div className='mt-32'>
@@ -48,7 +50,9 @@ const Employees = () => {
               </thead>
               <tbody>
                 {
-                  employees?.map(employee => <tr key={employee?.id}>
+                  employees?.map(employee => <tr key={employee?.id} className="cursor-pointer" onClick={() => {
+                    navigate(`/employees/${employee?.id}`);
+                  }}>
                     <td>{employee?.id}</td>
                     <td>{employee?.name}</td>
                     <td>{employee?.designation}</td>

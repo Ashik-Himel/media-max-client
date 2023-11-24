@@ -40,7 +40,7 @@ const DashboardSidebar = ({sidebarShow, setSidebarShow}) => {
   }
 
   return (
-    <aside className="row-span-2 bg-secondary flex flex-col pt-16 border-r-2 border-primary [&>*]:py-3 [&>*]:pl-6 [&>*]:mx-2 [&>*]:rounded-lg [&>*]:flex [&>*]:items-center [&>*]:gap-2 fixed lg:static w-[250px] lg:w-auto top-[70px] bottom-0 transition-[left] duration-300" style={sidebarShow ? {left: "0px"} : {left: "-300px"}}>
+    <aside className="row-span-2 bg-secondary flex flex-col pt-20 border-r-2 border-primary [&>*]:py-3 [&>*]:pl-6 [&>*]:mx-2 [&>*]:rounded-lg [&>*]:flex [&>*]:items-center [&>*]:gap-2 fixed lg:static w-[250px] lg:w-auto top-[70px] bottom-0 transition-[left] duration-300 z-30" style={sidebarShow ? {left: "0px"} : {left: "-300px"}}>
       <FaCircleXmark className="!p-0 text-3xl text-primary absolute top-4 right-4 lg:hidden select-none cursor-pointer" onClick={() => setSidebarShow(false)} />
       <NavLink to='/dashboard/home' className={({isActive}) => isActive ? 'bg-primary text-text-color-alt' : ''} onClick={() => setSidebarShow(false)}><IoHomeSharp />Dashboard</NavLink>
       <NavLink to='/dashboard/employees' className={({isActive}) => isActive ? 'bg-primary text-text-color-alt' : ''} onClick={() => setSidebarShow(false)}><FaUsers />Employees</NavLink>

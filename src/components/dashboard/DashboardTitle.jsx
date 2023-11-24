@@ -6,7 +6,10 @@ import PropTypes from 'prop-types';
 
 const DashboardTitle = ({setSidebarShow}) => {
   const {pathname} = useLocation();
-  const paths = pathname.split('/').filter(item => item);
+  let paths = pathname.split('/').filter(item => item);
+  if (paths[2] === "update") {
+    paths = pathname.split('/').filter(item => item).slice(0, 3);
+  }
   let title = paths[paths.length-1][0].toUpperCase() + paths[paths.length-1].slice(1);
   if (title === "Add" || title === "Update") {
     if (paths[paths.length-2] === "team") {

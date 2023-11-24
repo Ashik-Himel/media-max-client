@@ -31,3 +31,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   @apply !bg-primary !text-text-color-alt;
 }
+
+.react-datepicker-wrapper {
+  @apply w-full text-black;
+}
+.react-datepicker__view-calendar-icon input {
+  @apply !pl-8 !py-2;
+}
+.react-datepicker__calendar-icon {
+  @apply !top-[3px];
+}

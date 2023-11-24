@@ -13,6 +13,8 @@ import DashboardTeam from "../pages/dashboard/DashboardTeam";
 import EmployeeAdd from "../pages/dashboard/EmployeeAdd";
 import EmployeeUpdate from "../pages/dashboard/EmployeeUpdate";
 import TeamMemberUpdate from "../pages/dashboard/TeamMemberUpdate";
+import EmployeeDetails from "../pages/EmployeeDetails";
+import TeamMemberDetails from "../pages/TeamMemberDetails";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: '/employees',
         element: <Employees />
+      },
+      {
+        path: '/employees/:id',
+        element: <EmployeeDetails />
+      },
+      {
+        path: '/team/:id',
+        element: <TeamMemberDetails />
       },
       {
         path: '/login',
@@ -56,11 +66,11 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><EmployeeAdd /></PrivateRoute>
       },
       {
-        path: '/dashboard/employees/update',
+        path: '/dashboard/employees/update/:id',
         element: <PrivateRoute><EmployeeUpdate /></PrivateRoute>
       },
       {
-        path: '/dashboard/team/update',
+        path: '/dashboard/team/update/:id',
         element: <PrivateRoute><TeamMemberUpdate /></PrivateRoute>
       }
     ]

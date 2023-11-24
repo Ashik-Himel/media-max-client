@@ -1,11 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/header/Header";
 import DashboardTitle from "../components/dashboard/DashboardTitle";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const [sidebarShow, setSidebarShow] = useState(false);
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, [pathname]);
+  
 
   return (
     <>
