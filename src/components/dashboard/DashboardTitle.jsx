@@ -15,6 +15,9 @@ const DashboardTitle = ({setSidebarShow}) => {
     if (paths[paths.length-2] === "team") {
       title += " Member";
     }
+    else if (paths[paths.length-2] === "chairman") {
+      title += " Chairman"
+    }
     else {
       title += " Employee";
     }

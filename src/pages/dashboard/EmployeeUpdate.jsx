@@ -13,7 +13,7 @@ const EmployeeUpdate = () => {
   const navigate = useNavigate();
   const [birthDate, setBirthDate] = useState(new Date());
   const [joiningDate, setJoiningDate] = useState(new Date());
-  const {data: employee = {}, isLoading} = useQuery({
+  const {data: employee = {}, isLoading, refetch} = useQuery({
     queryKey: ['employees', oldId],
     queryFn: async() => {
       const res = await axiosInstance(`employees/${oldId}`);
@@ -61,7 +61,7 @@ const EmployeeUpdate = () => {
                     text: "Employee updated!",
                     icon: "success"
                   });
-                  e.target.reset();
+                  refetch();
                 }
               })
               .catch(err => {
@@ -85,7 +85,7 @@ const EmployeeUpdate = () => {
                 text: "Employee updated!",
                 icon: "success"
               });
-              e.target.reset();
+              refetch();
             }
           })
           .catch(err => {

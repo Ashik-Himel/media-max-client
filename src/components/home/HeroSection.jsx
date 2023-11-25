@@ -1,5 +1,6 @@
 import heroImg from '../../assets/images/hero-img.png';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { Link } from 'react-scroll';
 
 const HeroSection = () => {
   const shapeStyles = [
@@ -9,20 +10,20 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="py-12 overflow-hidden">
+    <section className="pt-12 overflow-hidden">
       <div className="container relative flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
-        <div>
+        <div data-aos="fade-right">
           <span className="inline-block mb-2 font-medium bg-white px-6 py-1 text-text-color-alt rounded">Hello</span>
           <h1 className="text-title-color font-['Tilt_Neon',_sans-serif] text-[2.5rem] font-bold leading-tight mb-2">Welcome To <span className="text-primary">MEDIA MAX</span></h1>
           <h3 className="text-title-color text-2xl font-medium mb-6">An Authorized Distributor of Banglalink</h3>
           <p className="max-w-[700px] mb-6">Media Max is an authorized distributor of banglalink in Sreepur, Gazipur. We are providing digital services of banglalink since March, 2018.</p>
           <div className="flex items-center gap-4">
-            <Link to='/#about' className='btn btn-primary'>About Us</Link>
-            <Link to='/employees' className='btn btn-outline'>Employees</Link>
+            <Link to='about' spy={true} smooth={true} duration={500} activeClass="active" className='btn btn-primary cursor-pointer select-none'>About Us</Link>
+            <NavLink to='/employees' className='btn btn-outline'>Employees</NavLink>
           </div>
         </div>
 
-        <div>
+        <div data-aos="fade-left">
           <img className='w-full max-w-[450px] mx-auto' src={heroImg} alt="Hero Section Image" />
         </div>
 

@@ -9,7 +9,7 @@ import axios from "axios";
 const TeamMemberUpdate = () => {
   const navigate = useNavigate();
   const {id} = useParams();
-  const {data : teamMember = {}} = useQuery({
+  const {data : teamMember = {}, refetch} = useQuery({
     queryKey: ["team", id],
     queryFn: async() => {
       const res = await axiosInstance(`team/${id}`);
@@ -52,7 +52,7 @@ const TeamMemberUpdate = () => {
                     text: "Team member updated!",
                     icon: "success"
                   });
-                  e.target.reset();
+                  refetch();
                 }
               })
               .catch(err => {
@@ -78,7 +78,7 @@ const TeamMemberUpdate = () => {
                 text: "Employee updated!",
                 icon: "success"
               });
-              e.target.reset();
+              refetch();
             }
           })
           .catch(err => {

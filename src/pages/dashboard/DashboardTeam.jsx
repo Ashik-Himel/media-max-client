@@ -6,13 +6,21 @@ import { axiosInstance } from "../../hooks/useAxios";
 
 const DashboardTeam = () => {
   const navigate = useNavigate();
-  const {data: team = []} = useQuery({
+  const {data: chairman = {}, isLoading} = useQuery({
+    queryKey: ['chairman'],
+    queryFn: async() => {
+      const res = await axiosInstance('/chairman');
+      return res.data;
+    }
+  })
+  const {data: team = [], isLoading: isLoading2} = useQuery({
     queryKey: ["team"],
     queryFn: async() => {
       const res = await axiosInstance('/team');
       return res.data;
     }
   })
+
   return (
     <div>
       <Helmet>
@@ -34,7 +42,26 @@ const DashboardTeam = () => {
               </thead>
               <tbody>
                 {
-                  team?.map(team => <tr key={team?._id}>
+                  !isLoading && <tr key={chairman?._id}>
+                    <td>{chairman?.name}</td>
+                    <td>{chairman?.designation}</td>
+                    <td>
+                      <img className="w-10 h-10 mx-auto" src={chairman?.photo} alt="Employee's Photo" />
+                    </td>
+                    <td>
+                      <div className="flex justify-center items-center gap-4">
+                        <FaEye className="text-[22px] cursor-pointer text-primary" onClick={() => {
+                          navigate('/chairman');
+                        }} />
+                        <FaPen className="cursor-pointer" onClick={() => {
+                          navigate(`/dashboard/chairman/update/${chairman?._id}`);
+                        }} />
+                      </div>
+                    </td>
+                  </tr>
+                }
+                {
+                  !isLoading2 && team?.map(team => <tr key={team?._id}>
                     <td>{team?.name}</td>
                     <td>{team?.designation}</td>
                     <td>

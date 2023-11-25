@@ -31,12 +31,12 @@ const TeamSection = () => {
   );
 
   return (
-    <section className="mt-16">
+    <section>
       <div className="container">
         <h2 className='text-title-color text-center text-[2rem] font-semibold mb-2 leading-tight'>Our <span className="text-primary">Team</span></h2>
         <p className='max-w-[500px] mx-auto text-center mb-10'>We have total 166 employees in 4 distribution houses. Some of them are -</p>
 
-        <div className="max-w-[900px] mx-auto bg-secondary p-8 rounded-lg flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
+        <div className="max-w-[900px] mx-auto bg-secondary p-8 rounded-lg flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1" data-aos="fade-up">
           <div className="w-full">
             <img className="rounded-lg w-full" src={chairman?.photo} alt="Chairman's Photo" />
           </div>
@@ -57,7 +57,7 @@ const TeamSection = () => {
 
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           {
-            team?.map((item, index) => index === team.length - 1 ? <div key={item._id} className='bg-secondary rounded-lg lg:col-start-2 xl:col-start-auto'>
+            team?.map((item, index) => index === team.length - 1 ? <div key={item._id} className='bg-secondary rounded-lg lg:col-start-2 xl:col-start-auto' data-aos="fade-up">
             <div className='w-full relative group'>
               <img className='w-full rounded-t-lg' src={item?.photo} alt="Team Members's Photo" />
               <div className='absolute inset-0 group-hover:bg-black group-hover:bg-opacity-60'></div>
@@ -80,7 +80,7 @@ const TeamSection = () => {
               <h3 className='text-2xl font-medium text-primary mb-1'>{item?.name}</h3>
               <span>{item?.designation}</span>
             </div>
-          </div> : <div key={item._id} className='bg-secondary rounded-lg'>
+          </div> : <div key={item._id} className='bg-secondary rounded-lg' data-aos="fade-up">
             <div className='w-full relative group'>
               <img className='w-full rounded-t-lg' src={item?.photo} alt="Team Members's Photo" />
               <div className='absolute inset-0 group-hover:bg-black group-hover:bg-opacity-60'></div>

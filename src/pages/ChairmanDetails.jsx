@@ -1,22 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { axiosInstance } from "../hooks/useAxios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { IoIosArrowBack } from "react-icons/io";
-import phoneIcon from '../assets/images/icons/telephone.png';
+import { useNavigate } from "react-router-dom";
 
-const TeamMemberDetails = () => {
+const ChairmanDetails = () => {
   const navigate = useNavigate();
-  const {id} = useParams();
-  const {data : teamMember = [], isLoading} = useQuery({
-    queryKey: ["team", id],
+  const {data: chairman = {}, isLoading} = useQuery({
+    queryKey: ["chairman"],
     queryFn: async() => {
-      const res = await axiosInstance(`team/${id}`);
+      const res = await axiosInstance('/chairman');
       return res.data;
     }
   })
 
-  if (isLoading) return (
+  if (isLoading) return(
     <div className="mt-32">
       <svg aria-hidden="true" className="w-8 h-8 text-white animate-spin fill-primary mx-auto" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -28,40 +26,33 @@ const TeamMemberDetails = () => {
   return (
     <main>
       <Helmet>
-        <title>Member Details - Media Max</title>
+        <title>Chairman - Media Max</title>
       </Helmet>
 
       <section>
         <div className="container">
-          <div className="mt-8 w-full max-w-[900px] mx-auto">
+
+        <div className="mt-8 mb-4 w-full max-w-[900px] mx-auto">
             <div className="btn btn-primary inline-flex items-center gap-1 cursor-pointer" onClick={() => navigate(-1)}>
               <IoIosArrowBack />
               <span>Back</span>
             </div>
           </div>
-
-          <div className="w-full max-w-[900px] mx-auto bg-secondary p-6 mt-4 rounded-lg flex flex-col md:flex-row items-center gap-6 [&>*]:flex-1">
+          <div className="max-w-[900px] mx-auto bg-secondary p-8 rounded-lg flex flex-col md:flex-row justify-center items-center gap-8 [&>*]:flex-1">
             <div className="w-full">
-              <img className="w-full rounded-lg" src={teamMember?.photo} alt="Employees Photo" />
+              <img className="rounded-lg w-full" src={chairman?.photo} alt="Chairman's Photo" />
             </div>
             <div>
-              <div className="text-center mb-6">
-                <h2 className="text-primary text-2xl font-medium">{teamMember?.name}</h2>
-                <span>{teamMember?.designation}</span>
-              </div>
-
-              <div className="[&>*]:block space-y-1 text-[18px] [&>*>*]:font-medium">
-                <span><span className="text-primary break-all">Facebook:</span> {teamMember?.contact?.facebook}</span>
-                <span><span className="text-primary">Email:</span> {teamMember?.contact?.email}</span>
-                <span><span className="text-primary">WhatsApp:</span> {teamMember?.contact?.whatsapp}</span>
-                <span><span className="text-primary">Phone:</span> {teamMember?.contact?.phone}</span>
-                <div className="!flex justify-center items-center gap-6 !mt-6">
-                  <span className="block flex-1 h-[2px] bg-white"></span>
-                  <a href={`tel:${teamMember?.contact?.phone}`}>
-                    <img className="w-10" src={phoneIcon} alt="Phone Icon" />
-                  </a>
-                  <span className="block flex-1 h-[2px] bg-white"></span>
-                </div>
+              <h3 className="text-2xl font-medium text-primary mb-1">{chairman?.name}</h3>
+              <span className="mb-8 block">{chairman?.designation}</span>
+              <p className="mb-8">{chairman?.about}</p>
+              <div>
+                <h4 className="text-2xl text-primary font-medium mb-2">Achievements:</h4>
+                <ul className="list-disc ml-4">
+                  {
+                    chairman?.achievements?.map(item => <li key={item}>{item}</li>)
+                  }
+                </ul>
               </div>
             </div>
           </div>
@@ -71,4 +62,4 @@ const TeamMemberDetails = () => {
   );
 };
 
-export default TeamMemberDetails;
+export default ChairmanDetails;
