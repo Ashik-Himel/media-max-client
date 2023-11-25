@@ -4,11 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../hooks/useAxios";
 import {IoIosArrowBack} from 'react-icons/io';
 import phoneIcon from '../assets/images/icons/telephone.png';
-import { format } from "date-fns";
+import { differenceInMonths, format, parseISO } from "date-fns";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const EmployeeDetails = () => {
   const {id} = useParams();
   const navigate = useNavigate();
+  const [exp, setExp] = useState('');
   const {data: employee = {}, isLoading} = useQuery({
     queryKey: ["employees", id],
     queryFn: async() => {
@@ -16,6 +19,14 @@ const EmployeeDetails = () => {
       return res.data;
     }
   })
+
+  useEffect(() => {
+    const startDate = parseISO(employee?.joiningDate);
+    const diffInMonths = differenceInMonths(new Date(), startDate);
+    const years = Math.floor(diffInMonths / 12);
+    const months = diffInMonths % 12;
+    setExp(`${years} Years ${months} Months`);
+  }, [employee, isLoading]);
 
   if (isLoading) return (
     <div className="mt-32">
@@ -62,7 +73,7 @@ const EmployeeDetails = () => {
                   employee?.dhHouse && <span><span className="text-primary">Dist. House:</span> {employee.dhHouse}</span>
                 }
                 {
-                  employee?.joiningDate && <span><span className="text-primary">Joining Date:</span> {format(new Date(employee.joiningDate), "dd MMM, yyyy")}</span>
+                  employee?.joiningDate && <span><span className="text-primary">Job Exp:</span> {exp}</span>
                 }
                 {
                   employee?.birthDate && <span><span className="text-primary">Birth Date:</span> {format(new Date(employee.birthDate), "dd MMM, yyyy")}</span>

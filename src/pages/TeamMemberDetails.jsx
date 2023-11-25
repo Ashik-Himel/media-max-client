@@ -51,7 +51,7 @@ const TeamMemberDetails = () => {
               </div>
 
               <div className="[&>*]:block space-y-1 text-[18px] [&>*>*]:font-medium">
-                <span><span className="text-primary break-all">Facebook:</span> {teamMember?.contact?.facebook}</span>
+                <span className="break-all"><span className="text-primary">Facebook:</span> {teamMember?.contact?.facebook}</span>
                 <span><span className="text-primary">Email:</span> {teamMember?.contact?.email}</span>
                 <span><span className="text-primary">WhatsApp:</span> {teamMember?.contact?.whatsapp}</span>
                 <span><span className="text-primary">Phone:</span> {teamMember?.contact?.phone}</span>
