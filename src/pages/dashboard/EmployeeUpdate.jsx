@@ -37,6 +37,7 @@ const EmployeeUpdate = () => {
     const designation = form.designation.value;
     const dhHouse = form.dhHouse.value;
     const phone = form.phone.value;
+    const status = form.status.value;
     const bloodGroup = form.bloodGroup.value;
     const img = form.photo?.files[0];
 
@@ -51,7 +52,7 @@ const EmployeeUpdate = () => {
       })
         .then(res => {
           if (res.data.success) {
-            const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, birthDate, joiningDate, bloodGroup}
+            const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
   
             axiosInstance.put(`/employees/${id}`, employee)
               .then(res => {
@@ -75,7 +76,7 @@ const EmployeeUpdate = () => {
         })
         .catch(err => console.log(err))
     } else {
-        const employee = {id, name, designation, dhHouse, phone, birthDate, joiningDate, bloodGroup}
+        const employee = {id, name, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
   
         axiosInstance.put(`/employees/${id}`, employee)
           .then(res => {
@@ -143,8 +144,11 @@ const EmployeeUpdate = () => {
               <input className="w-full px-4 py-2 rounded-md" type="tel" name="phone" id="phone" placeholder="Enter Employee Phone Number" defaultValue={employee?.phone} required />
             </div>
             <div className="w-full">
-              <label htmlFor="photo"  className="block font-medium mb-2">Employee Photo</label>
-              <input className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer" type="file" name="photo" id="photo" accept="image/*" />
+              <label htmlFor="status"  className="block font-medium mb-2">Employee Status</label>
+              <select name="status" id="status" className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer" defaultValue={employee?.status}>
+                <option value="Enrolled">Enrolled</option>
+                <option value="Resigned">Resigned</option>
+              </select>
             </div>
           </div>
           
@@ -168,9 +172,15 @@ const EmployeeUpdate = () => {
                 />
             </div>
           </div>
-          <div className="w-full">
-            <label htmlFor="bloodGroup" className="block font-medium mb-2">Blood Group</label>
-            <input className="w-full px-4 py-2 rounded-md" type="text" name="bloodGroup" id="bloodGroup" placeholder="Enter Employee Blood Group" defaultValue={employee?.bloodGroup} required />
+          <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-5 [&>*]:flex-1 mb-5">
+            <div className="w-full">
+              <label htmlFor="photo"  className="block font-medium mb-2">Employee Photo</label>
+              <input className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer" type="file" name="photo" id="photo" accept="image/*" />
+            </div>
+            <div className="w-full">
+              <label htmlFor="bloodGroup" className="block font-medium mb-2">Blood Group</label>
+              <input className="w-full px-4 py-2 rounded-md" type="text" name="bloodGroup" id="bloodGroup" placeholder="Enter Employee Blood Group" defaultValue={employee?.bloodGroup} required />
+            </div>
           </div>
           <button type="submit" className="btn btn-primary w-full mt-6">Update Employee</button>
         </form>

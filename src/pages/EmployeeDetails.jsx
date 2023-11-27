@@ -73,6 +73,9 @@ const EmployeeDetails = () => {
                   employee?.dhHouse && <span><span className="text-primary">Dist. House:</span> {employee.dhHouse}</span>
                 }
                 {
+                  employee?.status && <span><span className="text-primary">Employee Status:</span> <span className={employee.status === 'Resigned' ? "font-semibold text-red-600" : ""}>{employee.status}</span></span>
+                }
+                {
                   employee?.joiningDate && <span><span className="text-primary">Job Exp:</span> {exp}</span>
                 }
                 {

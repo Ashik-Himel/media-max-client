@@ -22,6 +22,7 @@ const EmployeeAdd = () => {
     const designation = form.designation.value;
     const dhHouse = form.dhHouse.value;
     const phone = form.phone.value;
+    const status = form.status.value;
     const bloodGroup = form.bloodGroup.value;
 
     const img = form.photo.files[0];
@@ -35,7 +36,7 @@ const EmployeeAdd = () => {
     })
       .then(res => {
         if (res.data.success) {
-          const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, birthDate, joiningDate, bloodGroup}
+          const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
 
           axiosInstance.post('/employees', employee)
             .then(res => {
@@ -104,8 +105,11 @@ const EmployeeAdd = () => {
               <input className="w-full px-4 py-2 rounded-md" type="tel" name="phone" id="phone" placeholder="Enter Employee Phone Number" required />
             </div>
             <div className="w-full">
-              <label htmlFor="photo"  className="block font-medium mb-2">Employee Photo</label>
-              <input className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer" type="file" name="photo" id="photo" accept="image/*" required />
+              <label htmlFor="status"  className="block font-medium mb-2">Employee Status</label>
+              <select name="status" id="status" className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer">
+                <option value="Enrolled">Enrolled</option>
+                <option value="Resigned">Resigned</option>
+              </select>
             </div>
           </div>
           
@@ -129,9 +133,15 @@ const EmployeeAdd = () => {
                 />
             </div>
           </div>
-          <div className="w-full">
-            <label htmlFor="bloodGroup" className="block font-medium mb-2">Blood Group</label>
-            <input className="w-full px-4 py-2 rounded-md" type="text" name="bloodGroup" id="bloodGroup" placeholder="Enter Employee Blood Group" required />
+          <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-5 [&>*]:flex-1 mb-5">
+            <div className="w-full">
+              <label htmlFor="photo"  className="block font-medium mb-2">Employee Photo</label>
+              <input className="w-full px-4 py-2 rounded-md bg-white text-black cursor-pointer" type="file" name="photo" id="photo" accept="image/*" required />
+            </div>
+            <div className="w-full">
+              <label htmlFor="bloodGroup" className="block font-medium mb-2">Blood Group</label>
+              <input className="w-full px-4 py-2 rounded-md" type="text" name="bloodGroup" id="bloodGroup" placeholder="Enter Employee Blood Group" required />
+            </div>
           </div>
           <button type="submit" className="btn btn-primary w-full mt-6">Add Employee</button>
         </form>
