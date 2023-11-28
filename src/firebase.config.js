@@ -3,13 +3,13 @@ import {getAuth} from 'firebase/auth';
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_APIKEY,
-  authDomain: import.meta.env.VITE_AUTHDOMAIN,
-  projectId: import.meta.env.VITE_PROJECTID,
-  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-  appId: import.meta.env.VITE_APPID,
-  measurementId: import.meta.env.VITE_MEASUREMENTID,
+  apiKey: "AIzaSyAZjOGLpwODg-aXnpk4R3pvfgcC2Ui4No8",
+  authDomain: "media-max.firebaseapp.com",
+  projectId: "media-max",
+  storageBucket: "media-max.appspot.com",
+  messagingSenderId: "911771616974",
+  appId: "1:911771616974:web:5e6f27a37580533b16b29f",
+  measurementId: "G-4NV9RP0NWZ",
 };
 
 const app = initializeApp(firebaseConfig);
