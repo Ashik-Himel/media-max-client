@@ -6,10 +6,11 @@ const DashboardHome = () => {
   const {data: employeeCount = 0} = useQuery({
     queryKey: ['employees', 'count'],
     queryFn: async() => {
-      const res = await axiosInstance('/employees/count');
+      const res = await axiosInstance('/employeeCount');
       return res.data;
     }
   })
+
   return (
     <div>
       <Helmet>

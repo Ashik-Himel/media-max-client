@@ -32,12 +32,12 @@ const DashboardTitle = ({setSidebarShow}) => {
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
         <TiHome />
         {
-          paths?.map((item, index) => !(index === paths.length-1) ? <>
+          paths?.map((item, index) => !(index === paths.length-1) ? <div key={index} className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>{item[0].toUpperCase() + item.slice(1)}</span>
             <IoIosArrowForward />
-          </> : <>
+          </div> : <div key={index} className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>{item[0].toUpperCase() + item.slice(1)}</span>
-          </>)
+          </div>)
         }
       </div>
     </section>
