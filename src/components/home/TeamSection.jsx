@@ -57,52 +57,29 @@ const TeamSection = () => {
 
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           {
-            team?.map((item, index) => index === team.length - 1 ? <div key={item._id} className='bg-secondary rounded-lg lg:col-start-2 xl:col-start-auto' data-aos="fade-up">
-            <div className='w-full relative group'>
-              <img className='w-full rounded-t-lg' src={item?.photo} alt="Team Members's Photo" />
-              <div className='absolute inset-0 group-hover:bg-black group-hover:bg-opacity-60'></div>
-              <div className='absolute left-0 right-0 bottom-0 h-0 overflow-hidden group-hover:h-full transition-[height] duration-300 flex justify-center items-center gap-4 [&_img]:w-10 rounded-t-lg'>
-                <a href={item?.contact?.facebook} target="_blank" rel="noopener noreferrer">
-                  <img src={fbIcon} alt="Facebook Icon" />
-                </a>
-                <a href={`mailto:${item?.contact?.email}`} target="_blank" rel="noopener noreferrer">
-                  <img src={gmailIcon} alt="Gmail Icon" />
-                </a>
-                <a href={`https://wa.me/${item?.contact?.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                  <img src={whatsappIcon} alt="WhatsApp Icon" />
-                </a>
-                <a href={`tel:${item?.contact?.phone}`} target="_blank" rel="noopener noreferrer">
-                  <img src={phoneIcon} alt="Telephone Icon" />
-                </a>
+            team?.map(item => <div key={item._id} className='bg-secondary rounded-lg' data-aos="fade-up">
+              <div className='w-full relative group'>
+                <img className='w-full rounded-t-lg' src={item?.photo} alt="Team Members's Photo" />
+                <div className='absolute inset-0 group-hover:bg-black group-hover:bg-opacity-60'></div>
+                <div className='absolute left-0 right-0 bottom-0 h-0 overflow-hidden group-hover:h-full transition-[height] duration-300 flex justify-center items-center gap-4 [&_img]:w-10 rounded-t-lg'>
+                  <a href={item?.contact?.facebook} target="_blank" rel="noopener noreferrer">
+                    <img src={fbIcon} alt="Facebook Icon" />
+                  </a>
+                  <a href={`mailto:${item?.contact?.email}`} target="_blank" rel="noopener noreferrer">
+                    <img src={gmailIcon} alt="Gmail Icon" />
+                  </a>
+                  <a href={`https://wa.me/${item?.contact?.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                    <img src={whatsappIcon} alt="WhatsApp Icon" />
+                  </a>
+                  <a href={`tel:${item?.contact?.phone}`} target="_blank" rel="noopener noreferrer">
+                    <img src={phoneIcon} alt="Telephone Icon" />
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className='p-4'>
-              <h3 className='text-2xl font-medium text-primary mb-1'>{item?.name}</h3>
-              <span>{item?.designation}</span>
-            </div>
-          </div> : <div key={item._id} className='bg-secondary rounded-lg' data-aos="fade-up">
-            <div className='w-full relative group'>
-              <img className='w-full rounded-t-lg' src={item?.photo} alt="Team Members's Photo" />
-              <div className='absolute inset-0 group-hover:bg-black group-hover:bg-opacity-60'></div>
-              <div className='absolute left-0 right-0 bottom-0 h-0 overflow-hidden group-hover:h-full transition-[height] duration-300 flex justify-center items-center gap-4 [&_img]:w-10 rounded-t-lg'>
-                <a href={item?.contact?.facebook} target="_blank" rel="noopener noreferrer">
-                  <img src={fbIcon} alt="Facebook Icon" />
-                </a>
-                <a href={`mailto:${item?.contact?.email}`} target="_blank" rel="noopener noreferrer">
-                  <img src={gmailIcon} alt="Gmail Icon" />
-                </a>
-                <a href={`https://wa.me/${item?.contact?.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                  <img src={whatsappIcon} alt="WhatsApp Icon" />
-                </a>
-                <a href={`tel:${item?.contact?.phone}`} target="_blank" rel="noopener noreferrer">
-                  <img src={phoneIcon} alt="Telephone Icon" />
-                </a>
+              <div className='p-4'>
+                <h3 className='text-2xl font-medium text-primary mb-1'>{item?.name}</h3>
+                <span>{item?.designation}</span>
               </div>
-            </div>
-            <div className='p-4'>
-              <h3 className='text-2xl font-medium text-primary mb-1'>{item?.name}</h3>
-              <span>{item?.designation}</span>
-            </div>
           </div>)
           }
         </div>

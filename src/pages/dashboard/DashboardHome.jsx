@@ -4,9 +4,16 @@ import { axiosInstance } from "../../hooks/useAxios";
 
 const DashboardHome = () => {
   const {data: employeeCount = 0} = useQuery({
-    queryKey: ['employees', 'count'],
+    queryKey: ['employeeCount'],
     queryFn: async() => {
       const res = await axiosInstance('/employeeCount');
+      return res.data;
+    }
+  })
+  const {data: teamCount = 0} = useQuery({
+    queryKey: ['teamCount'],
+    queryFn: async() => {
+      const res = await axiosInstance('/teamCount');
       return res.data;
     }
   })
@@ -28,7 +35,7 @@ const DashboardHome = () => {
         </div>
         <div className="bg-primary text-text-color-alt w-max py-4 rounded-lg text-center">
           <h3>Team Members</h3>
-          <span className="block mt-2 text-3xl font-semibold">5</span>
+          <span className="block mt-2 text-3xl font-semibold">{teamCount+1}</span>
         </div>
       </section>
     </div>
