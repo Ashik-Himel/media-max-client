@@ -77,7 +77,7 @@ const ChairmanUpdate = () => {
             if (res.data?.modifiedCount > 0) {
               Swal.fire({
                 title: "Updated!",
-                text: "Employee updated!",
+                text: "Chairman details updated!",
                 icon: "success"
               });
               refetch();

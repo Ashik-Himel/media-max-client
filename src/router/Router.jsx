@@ -17,6 +17,7 @@ import EmployeeDetails from "../pages/EmployeeDetails";
 import TeamMemberDetails from "../pages/TeamMemberDetails";
 import ChairmanDetails from "../pages/ChairmanDetails";
 import ChairmanUpdate from "../pages/dashboard/ChairmanUpdate";
+import TeamMemberAdd from "../pages/dashboard/TeamMemberAdd";
 
 export const router = createBrowserRouter([
   {
@@ -64,16 +65,20 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><DashboardEmployees /></PrivateRoute>
       },
       {
-        path: '/dashboard/team',
-        element: <PrivateRoute><DashboardTeam /></PrivateRoute>
-      },
-      {
         path: '/dashboard/employees/add',
         element: <PrivateRoute><EmployeeAdd /></PrivateRoute>
       },
       {
         path: '/dashboard/employees/update/:id',
         element: <PrivateRoute><EmployeeUpdate /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/team',
+        element: <PrivateRoute><DashboardTeam /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/team/add',
+        element: <PrivateRoute><TeamMemberAdd /></PrivateRoute>
       },
       {
         path: '/dashboard/team/update/:id',
