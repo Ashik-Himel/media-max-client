@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 const ChairmanUpdate = () => {
@@ -28,47 +27,37 @@ const ChairmanUpdate = () => {
 
     const form = e.target;
     const name = form.name.value;
+    const photo = form.photo?.files[0];
     const designation = form.designation.value;
     const about = form.about.value;
     const achieveTemp = form.achievements.value;
     const achievements = achieveTemp.split('***').filter(item => item).map(item => item.replaceAll("\n", "").trim());
-    const img = form.photo?.files[0];
 
 
-    if (img) {
-      const formData = new FormData();
-      formData.append('image', img);
-  
-      axios.post("https://api.imgbb.com/1/upload?key=efa03ba056d9d97f206451a43a8692bc", formData, {
+    if (photo) {
+      const chairmanDetails = {name, photo, designation, about, achievements}
+      axiosInstance.put(`/chairman`, chairmanDetails, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
         .then(res => {
-          if (res.data.success) {
-            const chairmanDetails = {name, photo: res.data.data.display_url, designation, about, achievements}
-  
-            axiosInstance.put(`/chairman`, chairmanDetails)
-              .then(res => {
-                if (res.data?.modifiedCount > 0) {
-                  Swal.fire({
-                    title: "Updated!",
-                    text: "Chairman details updated!",
-                    icon: "success"
-                  });
-                  refetch();
-                }
-              })
-              .catch(err => {
-                Swal.fire({
-                  title: "Error!",
-                  text: err.message,
-                  icon: "error"
-                });
-              })
+          if (res.data?.modifiedCount > 0) {
+            Swal.fire({
+              title: "Updated!",
+              text: "Chairman details updated!",
+              icon: "success"
+            });
+            refetch();
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error"
+          });
+        })
     } else {
         const chairmanDetails = {name, designation, about, achievements}
   

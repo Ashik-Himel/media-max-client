@@ -4,7 +4,6 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { axiosInstance } from "../../hooks/useAxios";
-import axios from "axios";
 
 const TeamMemberUpdate = () => {
   const navigate = useNavigate();
@@ -22,49 +21,39 @@ const TeamMemberUpdate = () => {
 
     const form = e.target;
     const name = form.name.value;
+    const photo = form.photo?.files[0];
     const designation = form.designation.value;
     const facebook = form.facebook.value;
     const email = form.email.value;
     const whatsapp = form.whatsapp.value;
     const phone = form.phone.value;
-    const img = form.photo?.files[0];
 
-    if (img) {
-      const formData = new FormData();
-      formData.append('image', img);
-  
-      axios.post("https://api.imgbb.com/1/upload?key=efa03ba056d9d97f206451a43a8692bc", formData, {
+    if (photo) {
+      const member = {name, photo, designation, contact: {
+        facebook, email, whatsapp, phone
+      }}
+      axiosInstance.put(`/team/${id}`, member, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         }
       })
         .then(res => {
-          if (res.data.success) {
-            const member = {name, photo: res.data.data.display_url, designation, contact: {
-              facebook, email, whatsapp, phone
-            }}
-  
-            axiosInstance.put(`/team/${id}`, member)
-              .then(res => {
-                if (res.data?.modifiedCount > 0) {
-                  Swal.fire({
-                    title: "Updated!",
-                    text: "Team member updated!",
-                    icon: "success"
-                  });
-                  refetch();
-                }
-              })
-              .catch(err => {
-                Swal.fire({
-                  title: "Error!",
-                  text: err.message,
-                  icon: "error"
-                });
-              })
+          if (res.data?.modifiedCount > 0) {
+            Swal.fire({
+              title: "Updated!",
+              text: "Team member updated!",
+              icon: "success"
+            });
+            refetch();
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error"
+          });
+        })
     } else {
         const member = {name, designation, contact: {
           facebook, email, whatsapp, phone

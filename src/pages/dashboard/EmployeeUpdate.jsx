@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { axiosInstance } from "../../hooks/useAxios";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -34,70 +33,58 @@ const EmployeeUpdate = () => {
     const form = e.target;
     const id = form.id.value;
     const name = form.name.value;
+    const photo = form.photo?.files[0];
     const designation = form.designation.value;
     const dhHouse = form.dhHouse.value;
     const phone = form.phone.value;
     const status = form.status.value;
     const bloodGroup = form.bloodGroup.value;
-    const img = form.photo?.files[0];
 
-    if (img) {
-      const formData = new FormData();
-      formData.append('image', img);
-  
-      axios.post("https://api.imgbb.com/1/upload?key=efa03ba056d9d97f206451a43a8692bc", formData, {
+    if (photo) {
+      const employeeData = {id, name, photo, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
+      axiosInstance.put(`/employees/${id}`, employeeData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
         .then(res => {
-          if (res.data.success) {
-            const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
-  
-            axiosInstance.put(`/employees/${id}`, employee)
-              .then(res => {
-                if (res.data?.modifiedCount > 0) {
-                  Swal.fire({
-                    title: "Updated!",
-                    text: "Employee updated!",
-                    icon: "success"
-                  });
-                  refetch();
-                }
-              })
-              .catch(err => {
-                Swal.fire({
-                  title: "Error!",
-                  text: err.message,
-                  icon: "error"
-                });
-              })
+          if (res.data?.modifiedCount > 0) {
+            Swal.fire({
+              title: "Updated!",
+              text: "Employee updated!",
+              icon: "success"
+            });
+            refetch();
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error"
+          });
+        })
     } else {
-        const employee = {id, name, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
-  
-        axiosInstance.put(`/employees/${id}`, employee)
-          .then(res => {
-            if (res.data?.modifiedCount > 0) {
-              Swal.fire({
-                title: "Updated!",
-                text: "Employee updated!",
-                icon: "success"
-              });
-              refetch();
-            }
-          })
-          .catch(err => {
+      const employeeData = {id, name, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
+      axiosInstance.put(`/employees/${id}`, employeeData)
+        .then(res => {
+          if (res.data?.modifiedCount > 0) {
             Swal.fire({
-              title: "Error!",
-              text: err.message,
-              icon: "error"
+              title: "Updated!",
+              text: "Employee updated!",
+              icon: "success"
             });
-          })
-    }
-    
+            refetch();
+          }
+        })
+        .catch(err => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error"
+          });
+        })
+    } 
   }
 
   return (

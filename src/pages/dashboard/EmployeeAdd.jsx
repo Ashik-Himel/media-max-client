@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { axiosInstance } from "../../hooks/useAxios";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -19,46 +18,37 @@ const EmployeeAdd = () => {
     const form = e.target;
     const id = form.id.value;
     const name = form.name.value;
+    const photo = form.photo.files[0];
     const designation = form.designation.value;
     const dhHouse = form.dhHouse.value;
     const phone = form.phone.value;
     const status = form.status.value;
     const bloodGroup = form.bloodGroup.value;
 
-    const img = form.photo.files[0];
-    const formData = new FormData();
-    formData.append('image', img);
+    const employee = {id, name, photo, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
 
-    axios.post("https://api.imgbb.com/1/upload?key=efa03ba056d9d97f206451a43a8692bc", formData, {
+    axiosInstance.post('/employees', employee, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
       .then(res => {
-        if (res.data.success) {
-          const employee = {id, name, photo: res.data.data.display_url, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
-
-          axiosInstance.post('/employees', employee)
-            .then(res => {
-              if (res.data?.insertedId) {
-                Swal.fire({
-                  title: "Added!",
-                  text: "Employee added!",
-                  icon: "success"
-                });
-                e.target.reset();
-              }
-            })
-            .catch(err => {
-              Swal.fire({
-                title: "Error!",
-                text: err.message,
-                icon: "error"
-              });
-            })
+        if (res.data?.insertedId) {
+          Swal.fire({
+            title: "Added!",
+            text: "Employee added!",
+            icon: "success"
+          });
+          e.target.reset();
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error"
+        });
+      })
   }
 
   return (
