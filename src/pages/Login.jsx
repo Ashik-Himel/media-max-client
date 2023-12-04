@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 import {signInWithEmailAndPassword } from 'firebase/auth';
@@ -69,7 +69,6 @@ const Login = () => {
               </div>
 
               <button className="btn btn-primary w-full" type="submit">Login</button>
-              <Link className="block mt-6 text-center text-primary font-medium">Forgotten password?</Link>
             </form>
           </div>
         </div>
