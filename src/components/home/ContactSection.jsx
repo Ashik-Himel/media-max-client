@@ -18,6 +18,7 @@ const ContactSection = () => {
         text: "Your message sent successfully!",
         icon: "success"
       });
+      e.target.reset();
       console.log(res.data);
     })
     .catch(error => console.log(error));
