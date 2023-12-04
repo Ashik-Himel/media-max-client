@@ -51,8 +51,8 @@ const Employees = () => {
               </thead>
               <tbody>
                 {
-                    !isLoading ? employees?.map(employee => <tr key={employee?.id} className="cursor-pointer" onClick={() => {
-                      navigate(`/employees/${employee?.id}`);
+                    !isLoading ? employees?.map(employee => <tr key={employee?._id} className="cursor-pointer" onClick={() => {
+                      navigate(`/employees/${employee?._id}`);
                     }}>
                       <td>{employee?.id}</td>
                       <td>{employee?.name}</td>

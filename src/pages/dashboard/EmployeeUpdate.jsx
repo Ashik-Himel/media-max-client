@@ -8,14 +8,14 @@ import DatePicker from "react-datepicker";
 import { useQuery } from "@tanstack/react-query";
 
 const EmployeeUpdate = () => {
-  const {id: oldId} = useParams();
+  const {id: _id} = useParams();
   const navigate = useNavigate();
   const [birthDate, setBirthDate] = useState(new Date());
   const [joiningDate, setJoiningDate] = useState(new Date());
   const {data: employee = {}, isLoading, refetch} = useQuery({
-    queryKey: ['employees', oldId],
+    queryKey: ['employees', _id],
     queryFn: async() => {
-      const res = await axiosInstance(`employees/${oldId}`);
+      const res = await axiosInstance(`employees/${_id}`);
       return res.data;
     }
   })
@@ -42,7 +42,7 @@ const EmployeeUpdate = () => {
 
     if (photo) {
       const employeeData = {id, name, photo, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
-      axiosInstance.put(`/employees/${id}`, employeeData, {
+      axiosInstance.put(`/employees/${_id}`, employeeData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -66,7 +66,7 @@ const EmployeeUpdate = () => {
         })
     } else {
       const employeeData = {id, name, designation, dhHouse, phone, status, birthDate, joiningDate, bloodGroup}
-      axiosInstance.put(`/employees/${id}`, employeeData)
+      axiosInstance.put(`/employees/${_id}`, employeeData)
         .then(res => {
           if (res.data?.modifiedCount > 0) {
             Swal.fire({

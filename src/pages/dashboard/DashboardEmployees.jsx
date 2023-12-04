@@ -89,7 +89,7 @@ const DashboardEmployees = () => {
               </thead>
               <tbody>
                 {
-                  !isLoading ? employees?.map(employee => <tr key={employee?.id}>
+                  !isLoading ? employees?.map(employee => <tr key={employee?._id}>
                     <td>{employee?.id}</td>
                     <td>{employee?.name}</td>
                     <td>
@@ -98,12 +98,12 @@ const DashboardEmployees = () => {
                     <td>
                       <div className="flex justify-center items-center gap-4">
                         <FaEye className="text-[22px] cursor-pointer text-primary" onClick={() => {
-                          navigate(`/employees/${employee?.id}`);
+                          navigate(`/employees/${employee?._id}`);
                         }} />
                         <FaPen className="cursor-pointer" onClick={() => {
-                          navigate(`/dashboard/employees/update/${employee.id}`);
+                          navigate(`/dashboard/employees/update/${employee?._id}`);
                         }} />
-                        <MdDelete className="text-[20px] cursor-pointer text-red-500" onClick={() => handleDelete(employee.id)} />
+                        <MdDelete className="text-[20px] cursor-pointer text-red-500" onClick={() => handleDelete(employee?._id)} />
                       </div>
                     </td>
                   </tr>) : <tr>
